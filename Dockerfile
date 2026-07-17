@@ -1,0 +1,19 @@
+FROM alpine:3.23.3
+
+RUN apk add --no-cache \
+      nss \
+      ca-certificates \
+      python3 \
+      py3-pip
+
+# Copy current directory to /usr/src/app
+ADD . /usr/app
+WORKDIR /usr/app
+
+# Create out folder
+RUN mkdir -p out
+
+# Install lc-export
+RUN pip3 install --break-system-packages .
+
+ENTRYPOINT ["lc-export", "--folder", "out"]
