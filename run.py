@@ -81,6 +81,12 @@ def main():
     else:
         cookie_string = f"LEETCODE_SESSION={session_cookie};"
         
+    print("\nSelect export mode:")
+    print("1. Only accepted submissions (default)")
+    print("2. All submissions (including failed, wrong answer, etc.)")
+    choice = input("Enter choice [1/2]: ").strip()
+    only_accepted = choice != "2"
+        
     export_dir = "temp_leetcode_data"
     
     print("\n📦 Checking dependencies...")
@@ -98,6 +104,8 @@ def main():
         "--folder", export_dir,
         "--no-problem-statement"
     ]
+    if only_accepted:
+        cmd.append("--only-accepted")
     
     try:
         result = subprocess.run(cmd, capture_output=True, text=True)
