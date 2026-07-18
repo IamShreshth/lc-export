@@ -6,17 +6,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --zinc-950: #09090b;
-      --zinc-900: #18181b;
-      --zinc-800: #27272a;
-      --zinc-700: #3f3f46;
-      --zinc-500: #71717a;
-      --zinc-400: #a1a1aa;
-      --zinc-200: #e4e4e7;
-      --zinc-100: #f4f4f5;
-      
-      --accent: #FFA116;
-      --accent-hover: #e58f13;
+      --leetcode-bg: #1a1a1a;          /* LeetCode base background */
+      --leetcode-panel: #262626;       /* LeetCode card panel */
+      --leetcode-hover: #333333;       /* LeetCode hover background */
+      --leetcode-border: #383838;      /* LeetCode borders */
+      --leetcode-text: #eff2f6;        /* LeetCode primary text */
+      --leetcode-muted: #8c8c8c;       /* LeetCode secondary/muted text */
+      --leetcode-accent: #ffa116;      /* LeetCode brand orange */
+      --leetcode-accent-hover: #e58f13;
+      --leetcode-green: #2cbb5d;       /* LeetCode green */
     }
 
     * {
@@ -27,10 +25,10 @@
 
     body {
       width: 320px;
-      background-color: var(--zinc-950);
+      background-color: var(--leetcode-bg);
       font-family: 'Inter', -apple-system, sans-serif;
       padding: 24px;
-      color: var(--zinc-100);
+      color: var(--leetcode-text);
     }
 
     .wrapper {
@@ -46,8 +44,8 @@
     }
 
     .logo {
-      background-color: var(--accent);
-      color: var(--zinc-950);
+      background-color: var(--leetcode-accent);
+      color: #1a1a1a;
       font-weight: 700;
       border-radius: 4px;
       display: flex;
@@ -62,7 +60,7 @@
       font-size: 18px;
       font-weight: 500;
       letter-spacing: -0.025em;
-      color: var(--zinc-100);
+      color: var(--leetcode-text);
     }
 
     /* Connection Status */
@@ -71,15 +69,15 @@
       align-items: center;
       justify-content: space-between;
       padding: 8px 12px;
-      background-color: var(--zinc-900);
+      background-color: rgba(0, 0, 0, 0.25);
       border-radius: 6px;
-      border: 1px solid var(--zinc-800);
+      border: 1px solid var(--leetcode-border);
       margin-bottom: 32px;
     }
 
     .status-text {
       font-size: 14px;
-      color: var(--zinc-400);
+      color: var(--leetcode-muted);
     }
 
     .status-dot {
@@ -88,22 +86,22 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background-color: var(--zinc-700);
+      background-color: var(--leetcode-muted);
     }
 
     .status-dot.connected {
-      background-color: #10b981; /* emerald-500 */
+      background-color: var(--leetcode-green);
     }
 
     .status-dot.disconnected {
-      background-color: #ef4444; /* red-500 */
+      background-color: #ef4444;
     }
 
     /* Submission Mode Section */
     .section-title {
       font-size: 12px;
       font-weight: 600;
-      color: var(--zinc-500);
+      color: var(--leetcode-muted);
       letter-spacing: 0.05em;
       margin-bottom: 12px;
       text-transform: uppercase;
@@ -129,17 +127,17 @@
     }
 
     .option-label:hover {
-      background-color: rgba(24, 24, 27, 0.3);
-      border-color: var(--zinc-800);
+      background-color: var(--leetcode-panel);
+      border-color: var(--leetcode-border);
     }
 
     .option-label:has(input[type="radio"]:checked) {
-      border-color: var(--zinc-700);
-      background-color: rgba(24, 24, 27, 0.5);
+      border-color: var(--leetcode-border);
+      background-color: var(--leetcode-hover);
     }
 
     .option-label input[type="radio"] {
-      accent-color: var(--accent);
+      accent-color: var(--leetcode-accent);
       width: 16px;
       height: 16px;
       cursor: pointer;
@@ -147,20 +145,20 @@
 
     .option-label span {
       font-size: 14px;
-      color: var(--zinc-400);
+      color: var(--leetcode-muted);
       transition: color 0.15s ease;
     }
 
     .option-label:has(input[type="radio"]:checked) span {
-      color: var(--zinc-200);
+      color: var(--leetcode-text);
       font-weight: 500;
     }
 
     /* Button: Flat solid color */
     .export-button {
       width: 100%;
-      background-color: var(--accent);
-      color: var(--zinc-950);
+      background-color: var(--leetcode-accent);
+      color: #1a1a1a;
       font-weight: 600;
       padding: 10px 16px;
       border-radius: 6px;
@@ -172,13 +170,14 @@
     }
 
     .export-button:hover:not(:disabled) {
-      background-color: var(--accent-hover);
+      background-color: var(--leetcode-accent-hover);
     }
 
     .export-button:disabled {
-      background-color: var(--zinc-800);
-      color: var(--zinc-500);
+      background-color: var(--leetcode-panel);
+      color: var(--leetcode-muted);
       cursor: not-allowed;
+      border: 1px solid var(--leetcode-border);
       box-shadow: none;
     }
 
@@ -197,19 +196,19 @@
     }
 
     .progress-label {
-      color: var(--zinc-400);
+      color: var(--leetcode-muted);
     }
 
     .progress-percent {
-      color: var(--zinc-200);
+      color: var(--leetcode-text);
       font-weight: 500;
     }
 
     .progress-bar-bg {
       width: 100%;
       height: 6px;
-      background-color: var(--zinc-900);
-      border: 1px solid var(--zinc-800);
+      background-color: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--leetcode-border);
       border-radius: 9999px;
       overflow: hidden;
       margin-bottom: 12px;
@@ -218,20 +217,20 @@
     .progress-bar-fill {
       width: 0%;
       height: 100%;
-      background-color: var(--accent);
+      background-color: var(--leetcode-accent);
       transition: width 0.2s ease;
     }
 
     .console-log {
       width: 100%;
       height: 72px;
-      background-color: var(--zinc-950);
-      border: 1px solid var(--zinc-800);
+      background-color: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--leetcode-border);
       border-radius: 6px;
       padding: 8px 12px;
       font-family: monospace;
       font-size: 10px;
-      color: var(--zinc-400);
+      color: var(--leetcode-muted);
       overflow-y: auto;
       white-space: pre-wrap;
       line-height: 1.4;
