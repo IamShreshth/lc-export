@@ -1,4 +1,4 @@
-# 🚀 lc-export
+# lc-export
 
 **lc-export** is a fast, automated utility to back up all your LeetCode submissions as a local dataset. Whether you want to review your solutions offline, track your grind, or feed your coding history into AI models like Claude or ChatGPT, this tool has you covered.
 
