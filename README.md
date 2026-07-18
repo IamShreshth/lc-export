@@ -18,10 +18,14 @@ You can use it in two ways:
 The easiest way. It uses your active browser session so you don't have to deal with auth tokens, and it zips everything up completely locally in your browser.
 
 **How to install:**
-1. Open Google Chrome and go to `chrome://extensions/`.
-2. Toggle **Developer mode** on (top-right corner).
-3. Click **Load unpacked** and select the `extension/` folder from this repo.
-4. Click the new extension icon in your toolbar, pick your mode (All vs Accepted), and hit **Export**. 
+1. Clone this repository (or download it as a ZIP):
+   ```bash
+   git clone https://github.com/IamShreshth/lc-export.git
+   ```
+2. Open Google Chrome and go to `chrome://extensions/`.
+3. Toggle **Developer mode** on (top-right corner).
+4. Click **Load unpacked** and select the `extension/` folder you just downloaded.
+5. Click the new extension icon in your toolbar, pick your mode (All vs Accepted), and hit **Export**.
 
 ## 2. Python CLI
 If you prefer the terminal, there is a Python script that hits LeetCode's REST and GraphQL APIs to download your data.
