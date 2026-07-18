@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LC Export</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f0f12;
+      --panel-bg: rgba(26, 26, 36, 0.45);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --accent-color: #ffa116; /* LeetCode orange */
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --success-green: #2cbb5d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 320px;
+      background-color: var(--bg-dark);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      padding: 20px;
+      overflow-hidden: hidden;
+    }
+
+    .container {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo-container {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ffa116 0%, #ff6a00 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #000;
+      font-size: 18px;
+      box-shadow: 0 0 10px rgba(255, 161, 22, 0.4);
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: linear-gradient(to right, #ffffff, #ffa116);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .status-panel {
+      font-size: 12px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--text-muted);
+    }
+
+    .status-dot.connected {
+      background-color: var(--success-green);
+      box-shadow: 0 0 8px var(--success-green);
+    }
+
+    .status-dot.disconnected {
+      background-color: #ef4444;
+      box-shadow: 0 0 8px #ef4444;
+    }
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 161, 22, 0.3);
+    }
+
+    .option-btn input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--text-muted);
+      border-radius: 50%;
+      outline: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .option-btn input[type="radio"]:checked {
+      border-color: var(--accent-color);
+    }
+
+    .option-btn input[type="radio"]:checked::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      display: block;
+    }
+
+    .option-btn span {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #ffa116 0%, #ff6a00 100%);
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(255, 161, 22, 0.25);
+    }
+
+    .action-btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 161, 22, 0.4);
+    }
+
+    .action-btn:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .action-btn:disabled {
+      background: #27272a;
+      color: var(--text-muted);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .progress-panel {
+      margin-top: 16px;
+      display: none;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(to right, #ffa116, var(--success-green));
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .console-log {
+      width: 100%;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      padding: 6px 10px;
+      font-family: monospace;
+      font-size: 10px;
+      color: #38bdf8;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo-container">LC</div>
+      <div class="title">LC Export</div>
+    </div>
+
+    <div class="status-panel">
+      <span id="status-text">Checking session...</span>
+      <div id="status-indicator" class="status-dot"></div>
+    </div>
+
+    <div class="section-title">Submission Mode</div>
+    <div class="option-group">
+      <label class="option-btn">
+        <input type="radio" name="mode" value="accepted" checked>
+        <span>Only Accepted Submissions</span>
+      </label>
+      <label class="option-btn">
+        <input type="radio" name="mode" value="all">
+        <span>All Submissions</span>
+      </label>
+    </div>
+
+    <button id="export-btn" class="action-btn" disabled>Export to ZIP</button>
+
+    <div id="progress-panel" class="progress-panel">
+      <div class="progress-info">
+        <span id="progress-label">Exporting...</span>
+        <span id="progress-percent">0%</span>
+      </div>
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <div id="console-log" class="console-log">Initializing...</div>
+    </div>
+  </div>
+
+  <script src="jszip.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

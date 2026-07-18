@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "LC Export",
+  "version": "1.0.0",
+  "description": "Export all your LeetCode submissions as a CSV and ZIP file in one click.",
+  "permissions": [
+    "downloads",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  }
+}
