@@ -8,7 +8,7 @@ import argparse
 import logging
 import os
 from string import Template
-from typing import Set
+from typing import Optional, Set
 
 from lc_export._version import __version__
 from lc_export.leetcode import LeetCode
