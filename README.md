@@ -2,6 +2,8 @@
   <img src="extension/icon.png" width="128" height="128" alt="LC Export Logo">
   <h1>lc-export</h1>
   <p>Export your entire LeetCode history into a clean CSV and code archive.</p>
+  <br>
+  <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FIamShreshth%2Flc-export&countColor=%23ffa116&style=flat" alt="Views">
 </div>
 
 ---
