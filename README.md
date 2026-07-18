@@ -10,7 +10,7 @@ You can run this project in **two ways**:
 
 ---
 
-## ⚡ Option A: Google Chrome Extension (Easiest - 1 Click)
+##  Option A: Google Chrome Extension (Easiest - 1 Click)
 
 Perfect if you want a visual interface and don't want to copy-paste session cookies.
 
