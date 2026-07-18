@@ -26,7 +26,7 @@ Perfect if you want a visual interface and don't want to copy-paste session cook
 
 ---
 
-## 🐍 Option B: Python CLI (Terminal)
+##  Option B: Python CLI (Terminal)
 
 Perfect for developers who want a CLI script or local execution.
 
@@ -54,7 +54,7 @@ python3 run.py
 
 ---
 
-## 🍪 How to Get Your Cookie (For Option B)
+##  How to Get Your Cookie (For Option B)
 1. Log in to [leetcode.com](https://leetcode.com) in your browser.
 2. Open Developer Tools (Right-click -> **Inspect**, or press `F12` / `Cmd + Option + I`).
 3. Go to the **Application** tab (or **Storage** in Firefox) and select **Cookies** in the left sidebar.
