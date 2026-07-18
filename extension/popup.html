@@ -6,13 +6,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #0f0f12;
-      --panel-bg: rgba(26, 26, 36, 0.45);
-      --border-color: rgba(255, 255, 255, 0.08);
-      --accent-color: #ffa116; /* LeetCode orange */
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --success-green: #2cbb5d;
+      --zinc-950: #09090b;
+      --zinc-900: #18181b;
+      --zinc-800: #27272a;
+      --zinc-700: #3f3f46;
+      --zinc-500: #71717a;
+      --zinc-400: #a1a1aa;
+      --zinc-200: #e4e4e7;
+      --zinc-100: #f4f4f5;
+      
+      --accent: #FFA116;
+      --accent-hover: #e58f13;
     }
 
     * {
@@ -23,183 +27,164 @@
 
     body {
       width: 320px;
-      background-color: var(--bg-dark);
-      font-family: 'Inter', sans-serif;
-      color: var(--text-main);
-      padding: 20px;
-      overflow-hidden: hidden;
+      background-color: var(--zinc-950);
+      font-family: 'Inter', -apple-system, sans-serif;
+      padding: 24px;
+      color: var(--zinc-100);
     }
 
-    .container {
-      background: var(--panel-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 16px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    .wrapper {
+      width: 100%;
     }
 
+    /* Header: Flat logo, clean text */
     .header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-color);
+      gap: 12px;
+      margin-bottom: 24px;
     }
 
-    .logo-container {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #ffa116 0%, #ff6a00 100%);
-      border-radius: 8px;
+    .logo {
+      background-color: var(--accent);
+      color: var(--zinc-950);
+      font-weight: 700;
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      color: #000;
-      font-size: 18px;
-      box-shadow: 0 0 10px rgba(255, 161, 22, 0.4);
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
     }
 
     .title {
       font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      background: linear-gradient(to right, #ffffff, #ffa116);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: var(--zinc-100);
     }
 
+    /* Connection Status */
     .status-panel {
-      font-size: 12px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-color);
-      margin-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 8px 12px;
+      background-color: var(--zinc-900);
+      border-radius: 6px;
+      border: 1px solid var(--zinc-800);
+      margin-bottom: 32px;
+    }
+
+    .status-text {
+      font-size: 14px;
+      color: var(--zinc-400);
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      position: relative;
+      display: flex;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background-color: var(--text-muted);
+      background-color: var(--zinc-700);
     }
 
     .status-dot.connected {
-      background-color: var(--success-green);
-      box-shadow: 0 0 8px var(--success-green);
+      background-color: #10b981; /* emerald-500 */
     }
 
     .status-dot.disconnected {
-      background-color: #ef4444;
-      box-shadow: 0 0 8px #ef4444;
+      background-color: #ef4444; /* red-500 */
     }
 
+    /* Submission Mode Section */
     .section-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+      font-size: 12px;
       font-weight: 600;
+      color: var(--zinc-500);
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
     }
 
-    .option-group {
+    .options-list {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 32px;
     }
 
-    .option-btn {
+    .option-label {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid transparent;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
+      background-color: transparent;
     }
 
-    .option-btn:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 161, 22, 0.3);
+    .option-label:hover {
+      background-color: rgba(24, 24, 27, 0.3);
+      border-color: var(--zinc-800);
     }
 
-    .option-btn input[type="radio"] {
-      appearance: none;
-      -webkit-appearance: none;
+    .option-label:has(input[type="radio"]:checked) {
+      border-color: var(--zinc-700);
+      background-color: rgba(24, 24, 27, 0.5);
+    }
+
+    .option-label input[type="radio"] {
+      accent-color: var(--accent);
       width: 16px;
       height: 16px;
-      border: 2px solid var(--text-muted);
-      border-radius: 50%;
-      outline: none;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       cursor: pointer;
     }
 
-    .option-btn input[type="radio"]:checked {
-      border-color: var(--accent-color);
+    .option-label span {
+      font-size: 14px;
+      color: var(--zinc-400);
+      transition: color 0.15s ease;
     }
 
-    .option-btn input[type="radio"]:checked::after {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background-color: var(--accent-color);
-      border-radius: 50%;
-      display: block;
-    }
-
-    .option-btn span {
-      font-size: 13px;
+    .option-label:has(input[type="radio"]:checked) span {
+      color: var(--zinc-200);
       font-weight: 500;
-      color: var(--text-main);
     }
 
-    .action-btn {
+    /* Button: Flat solid color */
+    .export-button {
       width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #ffa116 0%, #ff6a00 100%);
-      border: none;
-      border-radius: 10px;
-      color: #000;
+      background-color: var(--accent);
+      color: var(--zinc-950);
       font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: none;
       font-size: 14px;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 15px rgba(255, 161, 22, 0.25);
+      transition: background-color 0.15s ease;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     }
 
-    .action-btn:hover:not(:disabled) {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(255, 161, 22, 0.4);
+    .export-button:hover:not(:disabled) {
+      background-color: var(--accent-hover);
     }
 
-    .action-btn:active:not(:disabled) {
-      transform: translateY(1px);
-    }
-
-    .action-btn:disabled {
-      background: #27272a;
-      color: var(--text-muted);
-      box-shadow: none;
+    .export-button:disabled {
+      background-color: var(--zinc-800);
+      color: var(--zinc-500);
       cursor: not-allowed;
+      box-shadow: none;
     }
 
+    /* Progress & Logs */
     .progress-panel {
-      margin-top: 16px;
+      margin-top: 24px;
       display: none;
     }
 
@@ -208,74 +193,95 @@
       justify-content: space-between;
       align-items: center;
       font-size: 12px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .progress-bar-container {
+    .progress-label {
+      color: var(--zinc-400);
+    }
+
+    .progress-percent {
+      color: var(--zinc-200);
+      font-weight: 500;
+    }
+
+    .progress-bar-bg {
       width: 100%;
       height: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 3px;
+      background-color: var(--zinc-900);
+      border: 1px solid var(--zinc-800);
+      border-radius: 9999px;
       overflow: hidden;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .progress-bar {
+    .progress-bar-fill {
       width: 0%;
       height: 100%;
-      background: linear-gradient(to right, #ffa116, var(--success-green));
-      border-radius: 3px;
-      transition: width 0.3s ease;
+      background-color: var(--accent);
+      transition: width 0.2s ease;
     }
 
     .console-log {
       width: 100%;
-      height: 60px;
-      background: rgba(0, 0, 0, 0.4);
+      height: 72px;
+      background-color: var(--zinc-950);
+      border: 1px solid var(--zinc-800);
       border-radius: 6px;
-      border: 1px solid var(--border-color);
-      padding: 6px 10px;
+      padding: 8px 12px;
       font-family: monospace;
       font-size: 10px;
-      color: #38bdf8;
+      color: var(--zinc-400);
       overflow-y: auto;
       white-space: pre-wrap;
+      line-height: 1.4;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wrapper">
+    <!-- Header -->
     <div class="header">
-      <div class="logo-container">LC</div>
-      <div class="title">LC Export</div>
+      <div class="logo">LC</div>
+      <h1 class="title">LC Export</h1>
     </div>
 
+    <!-- Connection Status -->
     <div class="status-panel">
-      <span id="status-text">Checking session...</span>
-      <div id="status-indicator" class="status-dot"></div>
+      <span id="status-text" class="status-text">Checking session...</span>
+      <span id="status-indicator" class="status-dot"></span>
     </div>
 
-    <div class="section-title">Submission Mode</div>
-    <div class="option-group">
-      <label class="option-btn">
-        <input type="radio" name="mode" value="accepted" checked>
-        <span>Only Accepted Submissions</span>
-      </label>
-      <label class="option-btn">
-        <input type="radio" name="mode" value="all">
-        <span>All Submissions</span>
-      </label>
+    <!-- Submission Mode -->
+    <div class="mb-8">
+      <h2 class="section-title">Submission Mode</h2>
+      
+      <div class="options-list">
+        <!-- Active Option -->
+        <label class="option-label">
+          <input type="radio" id="mode-accepted" name="mode" value="accepted" checked>
+          <span>Only Accepted Submissions</span>
+        </label>
+
+        <!-- Inactive Option -->
+        <label class="option-label">
+          <input type="radio" id="mode-all" name="mode" value="all">
+          <span>All Submissions</span>
+        </label>
+      </div>
     </div>
 
-    <button id="export-btn" class="action-btn" disabled>Export to ZIP</button>
+    <!-- Button -->
+    <button id="export-btn" class="export-button" disabled>Export to ZIP</button>
 
+    <!-- Progress & Console Logs -->
     <div id="progress-panel" class="progress-panel">
       <div class="progress-info">
-        <span id="progress-label">Exporting...</span>
-        <span id="progress-percent">0%</span>
+        <span id="progress-label" class="progress-label">Exporting...</span>
+        <span id="progress-percent" class="progress-percent">0%</span>
       </div>
-      <div class="progress-bar-container">
-        <div id="progress-bar" class="progress-bar"></div>
+      <div class="progress-bar-bg">
+        <div id="progress-bar" class="progress-bar-fill"></div>
       </div>
       <div id="console-log" class="console-log">Initializing...</div>
     </div>
